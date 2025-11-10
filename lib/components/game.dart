@@ -28,7 +28,7 @@ class MyPhysicsGame extends Forge2DGame with WidgetsBindingObserver {
   final String playerName;
   final String levelId;
   final List<PowerUpType> activePowerUps = [];
-  int shots = 6;
+  int shots = 10;
 
   final PlayerColor _playerColor = PlayerColor.pink;
 
@@ -50,30 +50,22 @@ class MyPhysicsGame extends Forge2DGame with WidgetsBindingObserver {
       _levelEnemyConfigurations = {
     '1-1': [
       (color: EnemyColor.pink, isBoss: false),
-      (color: EnemyColor.pink, isBoss: false),
-      (color: EnemyColor.pink, isBoss: false),
     ],
     '1-2': [
-      (color: EnemyColor.pink, isBoss: false),
-      (color: EnemyColor.pink, isBoss: false),
       (color: EnemyColor.pink, isBoss: false),
       (color: EnemyColor.pink, isBoss: false),
     ],
     '1-3': [
       (color: EnemyColor.pink, isBoss: false),
       (color: EnemyColor.pink, isBoss: false),
-      (color: EnemyColor.pink, isBoss: false),
       (color: EnemyColor.pinkBoss, isBoss: true),
     ],
     '1-4': [
       (color: EnemyColor.pink, isBoss: false),
-      (color: EnemyColor.pink, isBoss: false),
       (color: EnemyColor.pinkBoss, isBoss: true),
-      (color: EnemyColor.blue, isBoss: false),
     ],
     '1-5': [
       (color: EnemyColor.pinkBoss, isBoss: true),
-      (color: EnemyColor.blue, isBoss: false),
       (color: EnemyColor.blue, isBoss: false),
       (color: EnemyColor.blueBoss, isBoss: true),
     ],
@@ -198,7 +190,7 @@ class MyPhysicsGame extends Forge2DGame with WidgetsBindingObserver {
     await camera.viewport.add(pauseButton);
 
     timer = TimerComponent(
-        period: 60,
+        period: 90,
         onTick: () {
           if (world.children.whereType<Enemy>().isNotEmpty && !isGameOver) {
             endGame(won: false);
@@ -207,7 +199,7 @@ class MyPhysicsGame extends Forge2DGame with WidgetsBindingObserver {
     add(timer);
 
     final timerText = TextComponent(
-      text: 'Time: 60',
+      text: 'Time: 90',
       position: Vector2(10, 10),
       textRenderer: TextPaint(
         style: const TextStyle(color: Colors.white, fontSize: 24),

@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'screens/game_screen.dart';
 import 'supabase_client.dart';
 import 'screens/welcome_screen.dart';
 
@@ -27,7 +28,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const WelcomeScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const WelcomeScreen(),
+        '/game': (context) {
+          final args = ModalRoute.of(context)!.settings.arguments
+              as Map<String, dynamic>;
+          return GameScreen(
+            playerName: args['playerName'],
+            levelId: args['levelId'],
+          );
+        },
+      },
     );
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'leaderboard_screen.dart';
 import '../progress_manager.dart';
 import 'tutorial_screen.dart';
-import 'game_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -31,14 +30,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           ),
         );
       } else {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => GameScreen(
-              playerName: _nameController.text,
-              levelId: levelId,
-            ),
-          ),
-        );
+        Navigator.pushNamed(context, '/game', arguments: {
+          'playerName': _nameController.text,
+          'levelId': levelId,
+        });
       }
     }
   }

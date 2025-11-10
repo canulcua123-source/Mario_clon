@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'game_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class TutorialScreen extends StatefulWidget {
@@ -40,14 +39,10 @@ class _TutorialScreenState extends State<TutorialScreen> {
   }
 
   void _startGame() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => GameScreen(
-          playerName: widget.playerName,
-          levelId: widget.levelId,
-        ),
-      ),
-    );
+    Navigator.of(context).pushReplacementNamed('/game', arguments: {
+      'playerName': widget.playerName,
+      'levelId': widget.levelId,
+    });
   }
 
   @override

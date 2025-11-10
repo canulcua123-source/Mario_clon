@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../progress_manager.dart';
-import 'game_screen.dart';
 import '../supabase_client.dart';
 
 class GameEndScreen extends StatefulWidget {
@@ -65,16 +64,10 @@ class _GameEndScreenState extends State<GameEndScreen> {
     await ProgressManager.saveHighestUnlockedLevel(nextLevelId);
     if (!mounted) return;
 
-    // Close the current screen and the game screen behind it, then push the new one
-    Navigator.of(context).pop(); // Pop GameEndScreen
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => GameScreen(
-          playerName: widget.playerName ?? 'Player',
-          levelId: nextLevelId,
-        ),
-      ),
-    );
+    Navigator.of(context).pushReplacementNamed('/game', arguments: {
+      'playerName': widget.playerName ?? 'Player',
+      'levelId': nextLevelId,
+    });
   }
 
   Future<void> _submitScore() async {

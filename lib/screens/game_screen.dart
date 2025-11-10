@@ -57,14 +57,11 @@ class _GameScreenState extends State<GameScreen> {
                           onPressed: () {
                             _game.resumeEngine();
                             _game.overlays.remove('PauseMenu');
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => GameScreen(
-                                  playerName: widget.playerName,
-                                  levelId: widget.levelId,
-                                ),
-                              ),
-                            );
+                            Navigator.of(context)
+                                .pushReplacementNamed('/game', arguments: {
+                              'playerName': widget.playerName,
+                              'levelId': widget.levelId,
+                            });
                           },
                           child: const Text('Restart'),
                         ),
@@ -72,7 +69,8 @@ class _GameScreenState extends State<GameScreen> {
                         ElevatedButton(
                           onPressed: () {
                             _game.overlays.remove('PauseMenu');
-                            Navigator.of(context).pop();
+                            Navigator.of(context)
+                                .pushNamedAndRemoveUntil('/', (route) => false);
                           },
                           child: const Text('Main Menu'),
                         ),
@@ -94,7 +92,8 @@ class _GameScreenState extends State<GameScreen> {
                   onClose: () {
                     _game.resumeEngine();
                     _game.overlays.remove('GameEnd');
-                    Navigator.of(context).pop();
+                    Navigator.of(context)
+                        .pushNamedAndRemoveUntil('/', (route) => false);
                   },
                 );
               },
@@ -111,14 +110,11 @@ class _GameScreenState extends State<GameScreen> {
                 IconButton(
                   icon: const Icon(Icons.refresh, color: Colors.white),
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => GameScreen(
-                          playerName: widget.playerName,
-                          levelId: widget.levelId,
-                        ),
-                      ),
-                    );
+                    Navigator.of(context)
+                        .pushReplacementNamed('/game', arguments: {
+                      'playerName': widget.playerName,
+                      'levelId': widget.levelId,
+                    });
                   },
                 ),
                 IconButton(
@@ -131,7 +127,8 @@ class _GameScreenState extends State<GameScreen> {
                 IconButton(
                   icon: const Icon(Icons.home, color: Colors.white),
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.of(context)
+                        .pushNamedAndRemoveUntil('/', (route) => false);
                   },
                 ),
               ],
